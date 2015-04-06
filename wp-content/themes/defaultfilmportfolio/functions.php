@@ -63,6 +63,13 @@ function bones_ahoy() {
 // let's get this party started
 add_action( 'after_setup_theme', 'bones_ahoy' );
 
+// A hook to remove the width/height dimensions from a thumbnail image
+add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10 );
+
+function remove_thumbnail_dimensions( $html ) {
+    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
+    return $html;
+}
 
 /************* OEMBED SIZE OPTIONS *************/
 
@@ -70,7 +77,7 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 640;
 }
 
-/************* THUMBNAIL SIZE OPTIONS *************/
+/************* THUMBNAIL SIZE OPTIONS *************/  
 
 // Thumbnail sizes
 add_image_size( 'bones-thumb-600', 600, 150, true );
