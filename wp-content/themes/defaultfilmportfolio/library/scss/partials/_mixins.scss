@@ -34,7 +34,7 @@ USAGE: @include transition(all 0.2s ease-in-out);
 
 @mixin transition($transition...) {
   // defining prefixes so we can use them in mixins below
-  $prefixes:      ("-webkit-", "" );
+  $prefixes:      ("-webkit-", "-moz-", "-o-" "" );
   @each $prefix in $prefixes {
     #{$prefix}transition: $transition;
   }
@@ -70,4 +70,21 @@ probably best not to use it. I mean, were you going to anyway? */
 	box-sizing:         $type;
 }
 
+/*********************
+OPACITY
+*********************/
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+}
 
+/*********************
+SVG FALLBACK
+*********************/
+@mixin svg-bg($name) {
+	.no-svg & {
+		background-image: url('../images/#{$name}.png');
+	}
+	background-image: none, url('../images/#{$name}.svg');
+}

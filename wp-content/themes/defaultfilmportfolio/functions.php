@@ -80,8 +80,7 @@ if ( ! isset( $content_width ) ) {
 /************* THUMBNAIL SIZE OPTIONS *************/  
 
 // Thumbnail sizes
-add_image_size( 'bones-thumb-600', 600, 150, true );
-add_image_size( 'bones-thumb-300', 300, 100, true );
+add_image_size( 'bones-thumb-660', 660, 440, true );
 
 /*
 to add more sizes, simply copy a line from above
@@ -107,8 +106,7 @@ add_filter( 'image_size_names_choose', 'bones_custom_image_sizes' );
 
 function bones_custom_image_sizes( $sizes ) {
     return array_merge( $sizes, array(
-        'bones-thumb-600' => __('600px by 150px'),
-        'bones-thumb-300' => __('300px by 100px'),
+        'bones-thumb-660' => __('660px by 440px'),
     ) );
 }
 
@@ -320,7 +318,6 @@ function custom_post_type() {
 
 add_action( 'init', 'custom_post_type', 0 );
 
-
 /*
 This is a modification of a function found in the
 twentythirteen theme where we can declare some
@@ -329,10 +326,25 @@ can replace these fonts, change it in your scss files
 and be up and running in seconds.
 */
 function bones_fonts() {
-  wp_enqueue_style('googleFonts', 'http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
+  wp_register_style('googleFontsLato','http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic,900italic');
+  wp_enqueue_style( 'googleFontsLato'); 
+
+  wp_register_style('googleFontsChivo','http://fonts.googleapis.com/css?family=Chivo:900');
+  wp_enqueue_style( 'googleFontsChivo');
 }
 
 add_action('wp_enqueue_scripts', 'bones_fonts');
+
+//Add necessary JS for contact page
+function contact_scripts() {
+  if ( is_page_template( 'page-contact.php' )  )
+  {
+    wp_enqueue_script('gyro', get_template_directory_uri() . '/library/js/gyro.min.js', array('jquery'));
+    wp_enqueue_script('jeye', get_template_directory_uri() . '/library/js/jEye.js', array('jquery', 'gyro'));
+  }
+}
+
+add_action('wp_enqueue_scripts', 'contact_scripts');
 
 // Enable support for HTML5 markup.
 	add_theme_support( 'html5', array(
@@ -340,5 +352,7 @@ add_action('wp_enqueue_scripts', 'bones_fonts');
 		'search-form',
 		'comment-form'
 	) );
+
+
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

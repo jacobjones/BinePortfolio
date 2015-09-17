@@ -16,13 +16,13 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'wordpress665');
+define('DB_NAME', 'wordpress212');
 
 /** MySQL database username */
-define('DB_USER', 'wordpressuser665');
+define('DB_USER', 'wordpressuser212');
 
 /** MySQL database password */
-define('DB_PASSWORD', '.3x#N#3k[7H-');
+define('DB_PASSWORD', 'p?]b?|LeM?Sa');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
@@ -42,14 +42,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'djF`l-wW54zwMs*KyaJu[Y7?^|_g2X o{Pg3Md66jSKXgU_X8Nf5AT`~I*)nr-_4');
-define('SECURE_AUTH_KEY',  'x!;55!/`b_@NeUT~#q2[FyPxZG?ks [b&kRPOC6aJ(Vb-G`HZ|52{ F{}8!N~|5d');
-define('LOGGED_IN_KEY',    '}w%F^k u0?kv]OY:we6Y[621:#:tvLP#PQ+C*k,3OZ~8N>!MK}3dNt]y<wOj23{C');
-define('NONCE_KEY',        'NY+KULnu|@9wds%~.|R3a>|WSBvY!!ugG`1krjdZG1:_<_I3zdD[~yj*#An>V<ar');
-define('AUTH_SALT',        'E>-BYtjO[_4p_@6}+:iT4&fL9c:<UX1*+xUDgPv!~m8(ih-N)b/;&X#xQ-sIwMnT');
-define('SECURE_AUTH_SALT', '3/2_fXT`:Le.ORc0_i{,@dCq)F.Y1{H@HB3Au5|(![|ynAzO7FG>SNo)g+si7h]Y');
-define('LOGGED_IN_SALT',   'BiJCuSc6k@tsCF4%rS:ZkZcvg%<(#1`,vN4w2,1+Df)5_1+u{-v6-?]uhC7Lb99n');
-define('NONCE_SALT',       '~1C-`f>vc:b.C|SvESOk)|S:dvsQ tEm1x#icB<|A|Us<9<!q)Tg0Cw:N~!t5:I)');
+define('AUTH_KEY',         '/W/fBXxrI3%FWv=_,(~iR)i]@:&i9LNs=K/3|c#Um7Fc!%#;:*mG2Xo&n]_KIwJ,');
+define('SECURE_AUTH_KEY',  'D`9~- u,7HhE,H|4+/L06A3H(HyX%_SR^zBU>meTZ,IxQKI>I2}A|gHr8gS1^{QN');
+define('LOGGED_IN_KEY',    ';E(E+]wM2IbRtw9PqSv>/l`y)E/RM&ccP+l#aY{&i{/@q&-.I^!,Z<?H)PhRglf5');
+define('NONCE_KEY',        'lvNF;yKbO0vMyafndXPAa,_QK78)2=LmjC?KpLm#U+<o}Q8nTfx_y2Vw[EMcC0m/');
+define('AUTH_SALT',        'Fb%/h /|6C0(iOU,l3QF50TK#<r^j{kf!*q%NW>@u;c^OE;5/P[e==L1?+GL4%:7');
+define('SECURE_AUTH_SALT', 'CBj8|e(y+b{t- RHwKoR+e1=%hepuc,S%W/1,2IHHLA|:6f/!-?|AS;cF[c?[_ ;');
+define('LOGGED_IN_SALT',   ')q+PH+,%/!Xa=Upg|E8Z:pMb c-wNIx|j~ *)%[PNr6VI;-VxRzLU-!lf>JmjjnD');
+define('NONCE_SALT',       'GZFK+]&/RsYt3HkqNLoS #P/,>??Kx=MJmR-ZuxB=eBTW+?g{+}F~_pAHU58t=*J');
 
 /**#@-*/
 

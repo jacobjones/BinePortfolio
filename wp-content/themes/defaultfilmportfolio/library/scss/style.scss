@@ -39,24 +39,408 @@ the whole project.
 @import "partials/mixins";
 
 // the grid
-@import "partials/grid";
+//@import "partials/grid";
+
+
+//Just do all styling here, for now :)
+
 
 /*********************
-IMPORTING MODULES
-Modules are reusable blocks or elements we use throughout the project.
-We can break them up as much as we want or just keep them all in one.
-I mean, you can do whatever you want. The world is your oyster. Unless
-you hate oysters, then the world is your peanut butter & jelly sandwich.
+GENERAL STYLES
 *********************/
 
-// alert boxes
-@import "modules/alerts";
+body {
+	font-family: $serif;
+	font-size: 100%;
+	line-height: 1.5;
+	color: $black;
+	background-color: $white;
+  	-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+}
 
-// buttons
-@import "modules/buttons";
+/*********************
+LINK STYLESs
+*********************/
 
-// forms (inputs & labels)
-@import "modules/forms";
+a {
+	color: $link-color;
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+	@include transition(border-bottom-color 0.3s);
+
+	/* on hover */
+	&:hover,
+	&:active, 
+	&:focus {
+		border-bottom: 1px solid $link-color;
+		color: $link-color;
+	}
+
+	/* on click */
+	&:active {
+
+	}
+}
+
+/******************************************************************
+H1, H2, H3, H4, H5 STYLES
+******************************************************************/
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+	text-rendering: optimizelegibility;
+	font-weight: 500;
+	/*
+	if you're going to use webfonts, be sure to check your weights
+	http://css-tricks.com/watch-your-font-weight/
+	*/
+
+	/* removing text decoration from all headline links */
+	a {
+		text-decoration: none;
+	}
+}
+
+h1, .h1, h2, .h2 {
+	font-family: $heading;
+	font-size: 1.25em;
+	line-height: 1.333em;
+	font-weight: 900;
+	text-transform: uppercase;
+}
+
+h3, .h3 {
+	font-size: 1.125em;
+}
+
+h4, .h4 {
+	font-size: 1.1em;
+	font-weight: 700;
+}
+
+h5, .h5 {
+	font-size: 0.846em;
+	line-height: 2.09em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+
+
+/*********************
+HEADER STYLES
+*********************/
+
+@media only screen and (max-width: 384px) {
+	.header {	
+		.short-name {
+			display: inline-block !important;
+		}
+
+		.full-name {
+			display: none;
+		}
+	}
+}
+
+.header {
+	position: fixed;
+	text-transform: uppercase;
+	top: 0;
+	left: 0;
+	margin: 20px;//1.5em;
+	z-index: 1;
+
+	.short-name {
+		display: none;
+	}
+
+	h1 {
+		margin: 0;
+		display: inline-block;
+		padding: 0 13px 0 0; //May need to change this (1em)
+	}
+
+	nav {
+		display: inline-block;
+	}
+
+	ul {
+		margin: 0;
+		
+		li {
+			font-family: $lato;
+			padding: 0 13px 0 0;
+			display: inline-block;
+		}
+	}
+}
+
+@media only screen and (max-width : 700px) {
+	.header  nav {
+		display: block;
+	}
+}
+
+#content
+{
+	> *:first-child {
+		margin-top: 130px !important;
+	}
+}
+
+.film-wrapper {
+	max-width: 1000px;
+	margin: 0px auto;
+	padding: 0 2em;
+
+	> .film {
+		position: relative;
+		padding-bottom: 56.25%; /* 16:9 */
+		height: 0;
+		width: 100%;
+
+		iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+}
+
+.text-wrapper {
+	  max-width: 550px;
+	  margin: 150px auto;
+	  padding: 0 2em;
+}
+
+
+@media only screen and (max-width: 384px) {
+	.archive-collection {
+		.archive-item {
+			width: 100% !important;
+			margin: 0 0 54px 0 !important;
+			height: auto !important;
+
+			.image-wrapper {
+				margin: auto !important;
+				width: 80% !important;
+				 display: inline-block;
+ 				 position: relative;
+ 				 height: auto !important;
+
+ 				 &:after {
+					padding-top: 66.67%;
+					/* 3:2 ratio */
+					display: block;
+					content: '';
+ 				 }
+
+				.image {
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					right: 0;
+					left: 0;
+				}
+			}
+		}
+	}
+}
+
+.archive-collection {
+
+	margin-top: 130px - 54px !important;
+
+	text-align: center;
+
+	ul {
+		margin: 0;
+	}
+
+	.archive-item {
+
+		display: inline-block;
+		height: 312px;
+		margin: 0 27px 54px 27px;
+		text-align: center;
+		vertical-align: top;
+		width: 330px;
+
+		a {
+			@include opacity(1);
+			border-bottom: 0 !important;
+		}
+
+		a:hover,
+		a:active, 
+		a:focus {
+				.image {
+					 @include opacity(0.7);
+				}
+			}
+
+		.image-wrapper {
+			width: 330px;
+			height: 220px;
+			background-color: $black;
+			margin-bottom: 1.3em;
+		}
+
+		.image {
+			@include transition(opacity 0.3s);
+			width: 100%;
+			height: 100%;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+		}
+
+		h2 {
+			margin: 0 auto;
+			@media screen and (max-width: 1048px) {
+				width: 80%;
+			}
+		}
+	}
+}
+
+.film-navigation {
+	text-align: right;
+	position: fixed;
+	top: 0;
+	right: 0;
+	margin: 20px;//1.5em;
+	z-index: 1;
+	//font-weight: bold;
+	font-size: 0.9em;
+}
+
+article {
+	.article-header > h1 {
+		text-align: center;
+		margin-top: 150px;
+		margin-bottom: 0px;
+		font-size: 2.25em;
+  		line-height: 1;
+  		padding: 0 1em;
+	}
+	.text-wrapper {
+		margin-top: 50px;
+	}
+}
+
+.social-media {
+
+	text-align: center;
+
+	.icon {
+		width: 50px;
+		height: 50px;
+		display: inline-block;
+		background-repeat: no-repeat;
+		background-position: center;
+		margin-left: 10px;
+		background-size: 25px 25px;
+		border-bottom: 0;
+		@include transition(background-color 0.3s);
+
+		&:first-child {
+			margin-left: 0;
+		}
+
+		.no-svg & {
+			background-size: 100%;
+		}
+
+		&:hover {
+			background-color:  #e6e6e6;
+			border-bottom: 0;
+		}
+	}
+
+	.facebook.icon {
+		@include svg-bg('social-media/facebook');
+	}
+
+	.instagram.icon {
+		@include svg-bg('social-media/instagram');
+	}
+
+	.pinterest.icon {
+		@include svg-bg('social-media/pinterest');
+	}
+
+	.tumblr.icon {
+		@include svg-bg('social-media/tumblr');
+	}
+
+	.vimeo.icon {
+		@include svg-bg('social-media/vimeo');
+	}
+}
+
+.footer {
+	.email {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+}
+
+/*********************
+EYE JUNK
+*********************/
+
+.resize-wrapper {
+	position: relative;
+	margin: 0 10px;
+	overflow: hidden;
+	height: 500px;
+}
+
+.portrait-wrapper {
+
+	position: absolute;
+	top: 0;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+
+	&.editmode {
+		.eye {
+			@include opacity(0.8);
+			z-index: 2;
+		}
+	}
+
+	.eye {
+		position: absolute;
+		background-color: $white;
+
+		.pupil {
+			position: absolute;
+			background-image: url("../images/pupil.png");
+			background-size: 100% 100%;
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+	}
+
+	.eye .pupil.animate {
+		-webkit-transition: 0.3s ease-in-out;
+	    -moz-transition: 0.3s ease-in-out;
+	    -o-transition: 0.3s ease-in-out;
+	    transition: 0.3s ease-in-out;
+	}
+
+	> img {
+		z-index: 1;
+		position: relative;
+	}
+}
 
 /*********************
 BASE (MOBILE) SIZE
@@ -66,7 +450,7 @@ the other stylesheets. Remember, keep it light: Speed is Important.
 *********************/
 
 // styles in base.scss
-@import "breakpoints/base";
+//@import "breakpoints/base";
 
 /*********************
 LARGER MOBILE DEVICES
@@ -74,12 +458,12 @@ This is for devices like the Galaxy Note or something that's
 larger than an iPhone but smaller than a tablet. Let's call them
 tweeners.
 *********************/
-@media only screen and (min-width: 481px) {
+//@media only screen and (min-width: 481px) {
 
 	// styles in 481up.scss
-	@import "breakpoints/481up";
+//	@import "breakpoints/481up";
 
-} // end of media query
+//} // end of media query
 
 /*********************
 TABLET & SMALLER LAPTOPS
@@ -87,12 +471,12 @@ This is the average viewing window. So Desktops, Laptops, and
 in general anyone not viewing on a mobile device. Here's where
 you can add resource intensive styles.
 *********************/
-@media only screen and (min-width: 768px) {
+//@media only screen and (min-width: 768px) {
 
 	// styles in 768up.scss
-	@import "breakpoints/768up";
+//	@import "breakpoints/768up";
 
-} // end of media query
+//} // end of media query
 
 /*********************
 DESKTOP
@@ -100,23 +484,23 @@ This is the average viewing window. So Desktops, Laptops, and
 in general anyone not viewing on a mobile device. Here's where
 you can add resource intensive styles.
 *********************/
-@media only screen and (min-width: 1030px) {
+//@media only screen and (min-width: 1030px) {
 
 	// styles in 1030up.scss
-	@import "breakpoints/1030up";
+//	@import "breakpoints/1030up";
 
-} // end of media query
+//} // end of media query
 
 /*********************
 LARGE VIEWING SIZE
 This is for the larger monitors and possibly full screen viewers.
 *********************/
-@media only screen and (min-width: 1240px) {
+//@media only screen and (min-width: 1240px) {
 
 	// styles in 1240up.scss
-	@import "breakpoints/1240up";
+//	@import "breakpoints/1240up";
 
-} // end of media query
+//} // end of media query
 
 /*********************
 RETINA (2x RESOLUTION DEVICES)
@@ -124,14 +508,14 @@ This applies to the retina iPhone (4s) and iPad (2,3) along with
 other displays with a 2x resolution. You can also create a media
 query for retina AND a certain size if you want. Go Nuts.
 *********************/
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (min--moz-device-pixel-ratio: 1.5),
-       only screen and (min-device-pixel-ratio: 1.5) {
+//@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+//       only screen and (min--moz-device-pixel-ratio: 1.5),
+//       only screen and (min-device-pixel-ratio: 1.5) {
 
 	// styles in 2x.scss
-	@import "breakpoints/2x";
+//	@import "breakpoints/2x";
 
-} // end of media query
+//} // end of media query
 
 /*********************
 PRINT STYLESHEET
@@ -139,9 +523,9 @@ Feel free to customize this. Remember to add things that won't make
 sense to print at the bottom. Things like nav, ads, and forms should
 be set to display none.
 *********************/
-@media print {
+//@media print {
 
 	// styles in print.scss
-	@import "partials/print";
+//	@import "partials/print";
 
-}
+//}

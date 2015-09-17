@@ -1,88 +1,82 @@
 <?php
 /*
- * CUSTOM POST TYPE TEMPLATE
+ * FILM TEMPLATE
  *
- * This is the custom post type post template. If you edit the post type name, you've got
- * to change the name of this template to reflect that name change.
+ * This is the film template.
  *
- * For Example, if your custom post type is "register_post_type( 'bookmarks')",
- * then your single template should be single-bookmarks.php
- *
- * Be aware that you should rename 'custom_cat' and 'custom_tag' to the appropiate custom
- * category and taxonomy slugs, or this template will not finish to load properly.
- *
- * For more info: http://codex.wordpress.org/Post_Type_Templates
 */
 ?>
 
 <?php get_header(); ?>
 
-			<div id="content">
+	<div id="content">
 
-				<div id="inner-content" class="wrap cf">
+		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-						<main id="main" class="m-all t-2of3 d-5of7 cf" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
+		<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article">
 
-							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+			<nav class="film-navigation">
 
-							<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article">
+				<div class="next">
+					<?php previous_post_link( '%link', '%title →'); ?>
+				</div>
+				<div class="previous">
+					<?php next_post_link( '%link', '← %title'); ?>
+				</div>
+			</nav>
 
-								<header class="article-header">
+			<div class="film-wrapper">
 
-									<h1 class="single-title custom-post-type-title"><?php the_title(); ?></h1>
+				<div class="film">
 
-								</header>
+					<?php
+						$vimeoid = get_field('vimeo_id');
 
-								<section class="entry-content cf">
-
-									<?php previous_post_link( '%link', '%title →'); ?>
-									<?php next_post_link( '%link', '← %title'); ?>
-
-									<?php
-										$vimeoid = get_field('vimeo_id');
-
-										if(!empty($vimeoid)){
-											echo '<iframe src="https://player.vimeo.com/video/' . $vimeoid .'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
-										}
-									?>
-									
-									<?php
-										// the content (pretty self explanatory huh)
-										the_content();
-									?>
-								</section> <!-- end article section -->
-
-								<footer class="article-footer">
-									<p class="tags"><?php echo get_the_term_list( get_the_ID(), 'custom_tag', '<span class="tags-title">' . __( 'Custom Tags:', 'bonestheme' ) . '</span> ', ', ' ) ?></p>
-
-								</footer>
-
-								<?php comments_template(); ?>
-
-							</article>
-
-							<?php endwhile; ?>
-
-							<?php else : ?>
-
-									<article id="post-not-found" class="hentry cf">
-										<header class="article-header">
-											<h1><?php _e( 'Oops, Post Not Found!', 'bonestheme' ); ?></h1>
-										</header>
-										<section class="entry-content">
-											<p><?php _e( 'Uh Oh. Something is missing. Try double checking things.', 'bonestheme' ); ?></p>
-										</section>
-										<footer class="article-footer">
-											<p><?php _e( 'This is the error message in the single-custom_type.php template.', 'bonestheme' ); ?></p>
-										</footer>
-									</article>
-
-							<?php endif; ?>
-
-						</main>
+						if(!empty($vimeoid)){
+							echo '<iframe src="https://player.vimeo.com/video/' . $vimeoid .'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+						}
+					?>
 
 				</div>
 
 			</div>
+
+			<header class="article-header">
+
+				<h1 class="single-title custom-post-type-title"><?php the_title(); ?></h1>
+
+			</header>
+
+
+			<section class="text-wrapper">
+
+				<?php
+					// the content (pretty self explanatory huh)
+					the_content();
+				?>
+
+			</section>
+
+		</article>
+
+		<?php endwhile; ?>
+
+		<?php else : ?>
+
+				<article id="post-not-found" class="hentry cf">
+					<header class="article-header">
+						<h1><?php _e( 'Oops, Post Not Found!', 'bonestheme' ); ?></h1>
+					</header>
+					<section class="entry-content">
+						<p><?php _e( 'Uh Oh. Something is missing. Try double checking things.', 'bonestheme' ); ?></p>
+					</section>
+					<footer class="article-footer">
+						<p><?php _e( 'This is the error message in the single-custom_type.php template.', 'bonestheme' ); ?></p>
+					</footer>
+				</article>
+
+		<?php endif; ?>
+
+	</div>
 
 <?php get_footer(); ?>

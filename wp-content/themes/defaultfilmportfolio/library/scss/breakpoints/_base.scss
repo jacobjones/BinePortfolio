@@ -20,7 +20,7 @@ body {
 	font-size: 100%;
 	line-height: 1.5;
 	color: $text-color;
-	background-color: $gray;
+	background-color: $white;
   	-webkit-font-smoothing: antialiased;
   	-moz-osx-font-smoothing: grayscale;
 }
@@ -81,26 +81,34 @@ LINK STYLES
 
 a, a:visited {
 	color: $link-color;
+	text-decoration: none;
+	transition: color 0.3s, border-bottom-color 0.3s;
+	-moz-transition: color 0.3s, border-bottom-color 0.3s; 
+	-webkit-transition: color 0.3s, border-bottom-color 0.3s; 
+	-o-transition: color 0.3s, border-bottom-color 0.3s; 
 
 	/* on hover */
-	&:hover, &:focus {
-		color: $link-hover;
+	&:hover,
+	&:active, 
+	&:focus {
+		border-bottom-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-color: black;
+		color: black;
 	}
 
 	/* on click */
 	&:active {
 
 	}
+}
 
-	/* mobile tap color */
-	&:link {
-		/*
-		this highlights links on iPhones/iPads.
-		so it basically works like the :hover selector
-		for mobile devices.
-		*/
-		-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
-	}
+/* mobile tap color */
+a:link, a:visited {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: transparent;
+	color: black;
 }
 
 /******************************************************************
@@ -122,8 +130,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h1, .h1 {
-	font-size: 2.5em;
+	font-family: $heading;
+	font-size: 1.25em;
 	line-height: 1.333em;
+	font-weight: 900;
 }
 
 h2, .h2 {
@@ -153,16 +163,22 @@ HEADER STYLES
 *********************/
 
 .header {
-	background-color: $black;
-}
+	position: fixed;
+	text-transform: uppercase;
+	top: 0;
+		left: 0;
+		margin: 1.5em;
 
-	#logo {
-		margin: 0.75em 0;
+	h1 {
+		margin: 0;
+		display: inline-block;
+		float: left;
 
 		a {
-			color: $white;
+			color: $black;
 		}
 	}
+}
 
 /*********************
 NAVIGATION STYLES
@@ -184,7 +200,7 @@ and more scalable.
 
 		a {
 			display: block;
-			color: $white;
+			color: $black;
 			text-decoration: none;
 			padding: 0.75em;
 
@@ -206,7 +222,7 @@ and more scalable.
 		/*
 		so you really have to rethink your dropdowns for mobile.
 		you don't want to have it expand too much because the
-		screen is so small. How you manage your menu should
+		screen inside so small. How you manage your menu should
 		depend on the project. Here's some great info on it:
 		http://www.alistapart.com/articles/organizing-mobile/
 		*/
